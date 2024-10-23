@@ -5,5 +5,5 @@ export default function Page() {
     <div>
       <p>Photos Page</p>
     </div>
-  )
+  );
 }
