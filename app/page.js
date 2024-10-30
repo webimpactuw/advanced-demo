@@ -1,7 +1,7 @@
 export default function Page() {
   return (
     <>
-      <div className="bg-greenTint h-24 w-24" />
+      <div className="bg-greenTint h-24 w-48 mx-auto mt-[10vw]" />
       <p className="m-[10vw] text-white">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et orci
         massa. Suspendisse pharetra a lorem eu pulvinar. Curabitur in consequat
