@@ -1,14 +1,14 @@
 import Container from "./components/container";
 
 export default async function Home() {
-  const people = await getPeople()
+  const people = await getPeople();
 
   return (
     <Container>
       <div className="flex flex-wrap gap-6">
-        {people.map(p => 
+        {people.map((p) => (
           <Person key={p.name} person={p} />
-        )}
+        ))}
       </div>
     </Container>
   );
@@ -20,10 +20,8 @@ function Person({ person }) {
       <div className="space-y-2">
         <h3 className="font-medium text-xl">{person.name}</h3>
         <div className="flex items-center justify-start space-x-2 text-xs font-medium uppercase text-primary-600">
-          Username: 
-          <p className="bg-zinc-900 ml-2 p-1 rounded-md">
-            {person.username}
-          </p>
+          Username:
+          <p className="bg-zinc-900 ml-2 p-1 rounded-md">{person.username}</p>
         </div>
       </div>
       <div className="space-y-1">
@@ -35,12 +33,14 @@ function Person({ person }) {
       </div>
       <hr />
       <div className="flex items-center justify-start space-x-2 text-xs font-medium uppercase text-primary-600">
-        Company: 
+        Company:
         <p className="bg-slate-700 ml-2 p-1 rounded-md">
           {person.company.name}
         </p>
       </div>
-      <p className="bg-secondary-100 text-sm rounded-full">{person.company.catchPhrase}</p>
+      <p className="bg-secondary-100 text-sm rounded-full">
+        {person.company.catchPhrase}
+      </p>
     </div>
   );
 }
