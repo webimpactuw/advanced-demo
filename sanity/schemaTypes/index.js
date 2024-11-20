@@ -1,3 +1,6 @@
+import blogPost from "./documents/blogPost";
+import photo from "./documents/photo";
+
 export const schema = {
-  types: [],
+  types: [photo, blogPost],
 };
