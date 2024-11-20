@@ -6,7 +6,9 @@ export default async function Photos() {
 
   return (
     <Container>
-      <p className="text-3xl text-center">Here&apos;s a random fact about dogs</p>
+      <p className="text-3xl text-center">
+        Here&apos;s a random fact about dogs
+      </p>
       <DogFact />
       <hr className="my-4" />
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
