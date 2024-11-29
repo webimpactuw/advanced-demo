@@ -1,56 +1,51 @@
+import Image from "next/image";
 import Container from "./components/container";
+import Logo from "@/public/webimpact-logo.png"
+import { FilledButton, OutlinedButton } from "./components/buttons";
+import { client } from "@/sanity/lib/client";
+import BlogPostCard from "./components/BlogPost";
 
 export default async function Home() {
-  const people = await getPeople();
+  const posts = await getBlogPosts();
 
   return (
-    <Container>
-      <div className="flex flex-wrap gap-6">
-        {people.map((p) => (
-          <Person key={p.name} person={p} />
-        ))}
+    <>
+      <div className="flex flex-col gap-12 w-full justify-between bg-gray-900">
+        <Container className="flex flex-col-reverse items-center md:items-end md:flex-row gap-12 w-full justify-between py-8">
+          <div className="flex flex-col gap-4 pb-8 h-fit">
+            <p className="font-semibold">Welcome to this website</p>
+            <h1 className="font-bold text-5xl">Hi, We're Web Impact</h1>
+            <p>This is our demo website! Here, we'll have the latest information and updates on Web Impact UW, including how to get involved. </p>
+            <div className="flex flex-col flex-wrap sm:flex-row gap-4">
+              <FilledButton>Read our blog</FilledButton>
+              <OutlinedButton>Check out our photos</OutlinedButton>
+            </div>
+          </div>
+          <Image src={Logo} alt="Web Impact Logo" className="w-96 shrink-0" height={256} width={256} />
+        </Container>
       </div>
-    </Container>
+      <div className="flex flex-col items-center pt-12 gap-2">
+        <h2 className="font-bold text-4xl">Latest Blog Posts</h2>
+        <p>Check out our latest blog posts</p>
+      </div>
+      <Container className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {posts.slice(0, 3).map(e => 
+          <BlogPostCard post={e} />
+        )}
+      </Container>
+    </>
   );
 }
 
-function Person({ person }) {
-  return (
-    <div className="max-w-sm w-full border border-primary-200 rounded-xl px-4 pb-4 pt-6 bg-gradient-to-bl from-zinc-800 to-zinc-500 md:hover:shadow-xl md:hover:scale-105 transition-all cursor-pointer space-y-2">
-      <div className="space-y-2">
-        <h3 className="font-medium text-xl">{person.name}</h3>
-        <div className="flex items-center justify-start space-x-2 text-xs font-medium uppercase text-primary-600">
-          Username:
-          <p className="bg-zinc-900 ml-2 p-1 rounded-md">{person.username}</p>
-        </div>
-      </div>
-      <div className="space-y-1">
-        <h4 className="font-medium">Contact</h4>
-        <ul className="font-mono text-sm">
-          <li>{person.email}</li>
-          <li>{person.phone}</li>
-        </ul>
-      </div>
-      <hr />
-      <div className="flex items-center justify-start space-x-2 text-xs font-medium uppercase text-primary-600">
-        Company:
-        <p className="bg-slate-700 ml-2 p-1 rounded-md">
-          {person.company.name}
-        </p>
-      </div>
-      <p className="bg-secondary-100 text-sm rounded-full">
-        {person.company.catchPhrase}
-      </p>
-    </div>
-  );
-}
+async function getBlogPosts() {
+  const query = `*[_type == "blogPost"] | order(date desc) {
+    title,
+    description,
+    date,
+    "slug":slug.current,
+    image
+  }`;
 
-async function getPeople() {
-  const people = await fetch("https://jsonplaceholder.typicode.com/users");
-
-  if (!people.ok) {
-    return new Error("Could not fetch data!");
-  }
-
-  return people.json();
+  const posts = await client.fetch(query, { next: { revalidate: 84600 } });
+  return posts;
 }
