@@ -6,7 +6,7 @@ export default async function Photos() {
 
   return (
     <Container>
-      <p className="font-semibold text-xl text-center">
+      <p className="font-semibold text-xl text-center mb-2">
         Here&apos;s a random fact about dogs:
       </p>
       <DogFact />
