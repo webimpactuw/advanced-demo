@@ -23,16 +23,22 @@ export default function DogFact() {
     getFact();
   }, []);
 
+  return (
+    <div className="max-w-[32rem] mx-auto my-4 bg-purple-800 text-purple-100 px-4 py-2 rounded-xl border-2 border-purple-400">
+      <p>{fact || "Loading fact..."}</p>
+    </div>
+  );
+
   return fact ? (
     <p
       className={
-        "mt-2 text-xl text-center " +
+        "mt-2 text-md text-center " +
         (success ? "text-green-500" : "text-red-500")
       }
     >
       {fact}
     </p>
   ) : (
-    <p className="text-center">Loading fact...</p>
+    <p className="mt-2 text-md text-center">Loading fact...</p>
   );
 }

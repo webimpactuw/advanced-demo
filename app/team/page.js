@@ -6,23 +6,27 @@ export default async function Page() {
     <Container className="flex flex-wrap gap-6">
       <div className="flex flex-col items-center gap-2 w-full">
         <h2 className="text-4xl font-bold">Our Team</h2>
-        <p>Our work would not be possible without our amazing team of individuals</p>
+        <p className="text-purple-600">
+          Our work would not be possible without our amazing team of individuals
+        </p>
       </div>
       {people.map((p) => (
         <Person key={p.name} person={p} />
       ))}
     </Container>
-  )
+  );
 }
 
 function Person({ person }) {
   return (
-    <div className="max-w-sm w-full border border-primary-200 rounded-xl px-4 pb-4 pt-6 bg-gradient-to-bl from-zinc-800 to-zinc-500 md:hover:shadow-xl md:hover:scale-105 transition-all space-y-2">
+    <div className="max-w-sm w-full border border-purple-100 rounded-xl px-4 pb-4 pt-6 bg-gradient-to-bl from-purple-400 to-purple-100 md:hover:shadow-xl md:hover:scale-105 transition-all space-y-2">
       <div className="space-y-2">
         <h3 className="font-medium text-xl">{person.name}</h3>
-        <div className="flex items-center justify-start space-x-2 text-xs font-medium uppercase text-primary-600">
-          Username:
-          <p className="bg-zinc-900 ml-2 p-1 rounded-md">{person.username}</p>
+        <div className="flex items-center justify-start space-x-2 text-xs font-medium uppercase">
+          <p>Username:</p>
+          <p className="bg-purple-600 text-zinc-100 ml-2 p-1 rounded-md">
+            {person.username}
+          </p>
         </div>
       </div>
       <div className="space-y-1">
@@ -33,13 +37,13 @@ function Person({ person }) {
         </ul>
       </div>
       <hr />
-      <div className="flex items-center justify-start space-x-2 text-xs font-medium uppercase text-primary-600">
+      <div className="flex items-center justify-start space-x-2 text-xs font-medium uppercase text-purple-800">
         Company:
-        <p className="bg-slate-700 ml-2 p-1 rounded-md">
+        <p className="bg-purple-600 text-zinc-100 ml-2 p-1 rounded-md">
           {person.company.name}
         </p>
       </div>
-      <p className="bg-secondary-100 text-sm rounded-full">
+      <p className="bg-purple-100 text-sm px-2 rounded-md">
         {person.company.catchPhrase}
       </p>
     </div>

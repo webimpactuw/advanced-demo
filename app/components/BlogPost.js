@@ -14,13 +14,13 @@ export default function BlogPostCard({ post }) {
         width={1920}
         height={1080}
         alt={post.title}
-        className="rounded-2xl border border-primary-400"
+        className="rounded-2xl border border-purple-400"
       />
       <div className="space-y-2">
         <DatePill date={post.date} />
         <div>
           <h2 className="text-lg font-semibold">{post.title}</h2>
-          <p className="line-clamp-1 text-sm text-primary-600">
+          <p className="line-clamp-1 text-sm text-purple-600">
             {post.description}
           </p>
         </div>
