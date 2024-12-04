@@ -1,6 +1,11 @@
 import Container from "../components/container";
 import DogFact from "../components/dogfact";
 
+export const metadata = {
+  title: "Web Impact Demo | Photos",
+  description: "A demo site for Advanced Coding Workshops",
+};
+
 export default async function Photos() {
   const dogs = await getDogs();
 
@@ -31,7 +36,7 @@ async function getDogs() {
 
 function DogCard({ dog }) {
   return (
-    <li className="border md:hover:scale-95 transition-transform border-purple-100 bg-gradient-to-bl from-purple-100 to-white via-white rounded-xl p-4 flex items-start justify-start space-x-4">
+    <li className="border md:hover:scale-95 transition-transform border-purple-100 bg-gradient-to-bl from-purple-100 to-white via-white rounded-xl p-4 flex flex-col sm:flex-row items-start justify-start gap-4">
       <img
         src={dog.pic}
         alt={dog.name}

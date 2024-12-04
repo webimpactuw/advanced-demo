@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 export default function DogFact() {
   const [fact, setFact] = useState("");
-  const [success, setSuccess] = useState(false);
 
   async function getFact() {
     const res = await fetch("https://dogapi.dog/api/facts");
@@ -16,7 +15,6 @@ export default function DogFact() {
     const data = await res.json();
 
     setFact(data.success ? data.facts[0] : "Could not fetch dog fact!");
-    setSuccess(data.success);
   }
 
   useEffect(() => {
@@ -24,7 +22,7 @@ export default function DogFact() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center max-w-[32rem] h-32 mx-auto mb-4 bg-purple-800 text-purple-100 px-4 py-2 rounded-xl border-2 border-purple-400">
+    <div className="flex items-center justify-center max-w-[32rem] min-h-32 mx-auto mb-4 bg-purple-800 text-purple-100 px-4 py-2 rounded-xl border-2 border-purple-400">
       <p className="text-center">{fact || "Loading fact..."}</p>
     </div>
   );

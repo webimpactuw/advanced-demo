@@ -16,14 +16,15 @@ export default async function Page({ params }) {
 
   return (
     <Container>
-      <div className="mx-auto max-w-5xl space-y-8 py-8">
+      <div className="mx-auto max-w-5xl space-y-8">
         <BlogPostHeader post={post[0]} />
-        <hr className="border-purple-100" />
+        <hr className="h-0.5 bg-purple-400" />
         <Image
           width={1920}
           height={1080}
           alt={post[0].title}
           src={urlForImage(post[0].image).url()}
+          className="rounded-2xl"
         />
         <article>
           <PortableText

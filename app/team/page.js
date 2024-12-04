@@ -2,6 +2,11 @@ import Image from "next/image";
 import Container from "../components/container";
 import Head from "/public/person.png";
 
+export const metadata = {
+  title: "Web Impact Demo | Team",
+  description: "A demo site for Advanced Coding Workshops",
+};
+
 export default async function Page() {
   const people = await getPeople();
   return (
@@ -23,7 +28,13 @@ function Person({ person }) {
   return (
     <div className="flex flex-col md:flex-row gap-4 w-full max-w-3xl mx-auto border border-purple-100 rounded-xl px-4 py-6 bg-zinc-100 md:hover:shadow-xl md:hover:scale-105 transition-all">
       <div className="flex justify-center items-center">
-        <Image src={Head} alt="Placeholder headshot" className="w-36 h-36 min-w-36" width={144} height={144} />
+        <Image
+          src={Head}
+          alt="Placeholder headshot"
+          className="w-36 h-36 min-w-36"
+          width={144}
+          height={144}
+        />
       </div>
       <div className="flex flex-col gap-1">
         <h3 className="font-medium text-xl">{person.name}</h3>
